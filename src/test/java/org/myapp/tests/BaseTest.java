@@ -17,11 +17,13 @@ public class BaseTest {
     @BeforeEach
     public void setUp() {
         WebDriverManager.chromedriver().setup();
+
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         driver.manage().window().maximize();
-        driver.get(Urls.LOGIN_URL);
+
     }
 
     @AfterEach

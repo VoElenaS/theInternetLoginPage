@@ -1,6 +1,7 @@
 package org.myapp.pages;
 
 import org.myapp.models.User;
+import org.myapp.utils.Urls;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,6 +17,11 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
+    }
+
+    public LoginPage open(WebDriver driver) {
+        driver.get(Urls.LOGIN_URL);
+        return this;
     }
 
     public SecureAreaPage loginAs(User user) {

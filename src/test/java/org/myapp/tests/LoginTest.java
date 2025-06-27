@@ -19,6 +19,7 @@ class LoginTest extends BaseTest {
                 .build();
 
         SecureAreaPage secureAreaPage = new LoginPage(driver, wait)
+                .open(driver)
                 .loginAs(user);
         secureAreaPage.takeScreenshots("successfulLogin");
         String expected = secureAreaPage
@@ -32,6 +33,7 @@ class LoginTest extends BaseTest {
         User user = DataGenerator.realUser();
 
         String expected = new LoginPage(driver, wait)
+                .open(driver)
                 .loginWithInvalidCredentials(user)
                 .getMessageUserInvalide();
 

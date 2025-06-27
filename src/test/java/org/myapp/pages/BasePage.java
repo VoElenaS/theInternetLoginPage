@@ -25,6 +25,18 @@ abstract class BasePage {
         return driver.getTitle();
     }
 
+    public void refresh() {
+        driver.navigate().refresh();
+    }
+
+    public void goBack() {
+        driver.navigate().back();
+    }
+
+    public void goForward() {
+        driver.navigate().forward();
+    }
+
     public void takeScreenshots(String prefix) throws IOException {
         try {
             Path path = Paths.get("./screenshots");

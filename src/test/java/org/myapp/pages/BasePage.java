@@ -1,9 +1,12 @@
 package org.myapp.pages;
 
 import org.myapp.utils.DateUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,13 +25,22 @@ abstract class BasePage {
         return driver.getTitle();
     }
 
-    public void takeScreeShots(String prefix) throws IOException {
-        Path path = Paths.get("./screenshots");
+    public void takeScreenshots(String prefix) throws IOException {
+        try {
+            Path path = Paths.get("./screenshots");
 
-        if (!Files.exists(path)){
-            Files.createDirectories(path);
+            if (!Files.exists(path)) {
+                Files.createDirectories(path);
+            }
+
+            String timestamp = DateUtils.getCurrentTimestamp();
+            String fileName = prefix + "_" + timestamp + ".png";
+
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File screenshot = ts.getScreenshotAs(OutputType.FILE);
+            Files.copy(screenshot.toPath(), path.resolve(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        String timestamp = DateUtils.getCurrentTimestamp();
     }
 }

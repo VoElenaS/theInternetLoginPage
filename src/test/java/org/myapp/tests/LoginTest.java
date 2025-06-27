@@ -3,20 +3,25 @@ package org.myapp.tests;
 import org.junit.jupiter.api.Test;
 import org.myapp.models.User;
 import org.myapp.pages.LoginPage;
+import org.myapp.pages.SecureAreaPage;
 import org.myapp.utils.DataGenerator;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LoginTest extends BaseTest {
     @Test
-    public void testSuccessfulLogin() {
+    public void testSuccessfulLogin() throws IOException {
         User user = User.builder()
                 .name("tomsmith")
                 .password("SuperSecretPassword!")
                 .build();
 
-        String expected = new LoginPage(driver, wait)
-                .loginAs(user)
+        SecureAreaPage secureAreaPage = new LoginPage(driver, wait)
+                .loginAs(user);
+        secureAreaPage.takeScreenshots("successfulLogin");
+        String expected = secureAreaPage
                 .getSuccessfulMessage();
 
         assertTrue(expected.contains("You logged into a secure area!"));
@@ -29,6 +34,7 @@ class LoginTest extends BaseTest {
         String expected = new LoginPage(driver, wait)
                 .loginWithInvalidCredentials(user)
                 .getMessageUserInvalide();
+
 
         assertTrue(expected.contains("Your username is invalid!"));
     }

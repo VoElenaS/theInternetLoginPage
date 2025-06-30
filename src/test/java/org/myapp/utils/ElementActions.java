@@ -1,10 +1,13 @@
 package org.myapp.utils;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class ElementActions {
@@ -60,6 +63,53 @@ public class ElementActions {
 
     public static WebElement find(WebDriverWait wait, By locator) {
         return waitForPresence(wait, locator);
+    }
+
+    public static boolean isAlertPresent(WebDriverWait wait) {
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            return true;
+        } catch (Exception e) {
+            logger.warning("Alert not present: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static void acceptAlert(WebDriverWait wait) {
+        try {
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+        } catch (Exception e) {
+            logger.warning("Alert not present: " + e.getMessage());
+        }
+    }
+
+    public static String getAlertTextAndAccept(WebDriverWait wait) {
+        try {
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+            String alertText = alert.getText();
+            alert.accept();
+            return alertText;
+        } catch (Exception e) {
+            logger.warning("Error handling alert: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static void switchToNewWindow(WebDriver driver, WebDriverWait wait, String currentWindowHandle) {
+        wait.until(driverInstance -> {
+            Set<String> handles = driverInstance.getWindowHandles();
+            return handles.size() > 1;
+        });
+
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        for (String handle : windowHandles) {
+            if (!currentWindowHandle.equals(handle)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
     }
 
     private static WebElement waitForPresence(WebDriverWait wait, By locator) {

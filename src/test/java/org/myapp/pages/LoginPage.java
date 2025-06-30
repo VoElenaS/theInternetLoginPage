@@ -13,7 +13,8 @@ public class LoginPage extends BasePage {
     private final By userNameInputLocator = By.id("username");
     private final By passwordInputLocator = By.id("password");
     private final By loginButton = By.className("radius");
-    private final By flashMessage = By.id("flash");
+    private final By flashMessageInvalid = By.id("flash");
+    private final By loginPageHeader = By.xpath("//h2[text()='Login Page']");
 
     public LoginPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
@@ -27,7 +28,7 @@ public class LoginPage extends BasePage {
     public SecureAreaPage loginAs(User user) {
         return enterUserName(user.getName())
                 .enterPassword(user.getPassword())
-                .submit();
+                .submitSuccessfulLogin();
     }
 
     public LoginPage loginWithInvalidCredentials(User user) {
@@ -51,13 +52,16 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public SecureAreaPage submit() {
+    public SecureAreaPage submitSuccessfulLogin() {
         click(wait, loginButton);
         return new SecureAreaPage(driver, wait);
     }
 
-    public String getMessageUserInvalide() {
-        return getText(wait, flashMessage);
+    public String getMessageUserInvalid() {
+        return getText(wait, flashMessageInvalid);
     }
 
+    public boolean isLoginPageHeaderVisible() {
+        return isVisible(wait, loginPageHeader);
+    }
 }

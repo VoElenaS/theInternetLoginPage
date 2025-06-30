@@ -1,6 +1,5 @@
 package org.myapp.pages;
 
-import org.myapp.utils.DateUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +10,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 
-abstract class BasePage {
+public abstract class BasePage {
+
+    private static final Logger logger = Logger.getLogger(BasePage.class.getName());
     protected final WebDriver driver;
     protected final WebDriverWait wait;
 
@@ -26,33 +28,37 @@ abstract class BasePage {
     }
 
     public void refresh() {
+        logger.info("Refreshing the page");
         driver.navigate().refresh();
     }
 
     public void goBack() {
+        logger.info("Navigating back");
         driver.navigate().back();
     }
 
     public void goForward() {
+        logger.info("Navigating forward");
         driver.navigate().forward();
     }
 
-    public void takeScreenshots(String prefix) throws IOException {
+    public void takeScreenshot(String prefix) {
         try {
             Path path = Paths.get("./screenshots");
-
             if (!Files.exists(path)) {
                 Files.createDirectories(path);
             }
 
-            String timestamp = DateUtils.getCurrentTimestamp();
+            String timestamp = org.myapp.utils.DateUtils.getCurrentTimestamp();
             String fileName = prefix + "_" + timestamp + ".png";
 
             TakesScreenshot ts = (TakesScreenshot) driver;
             File screenshot = ts.getScreenshotAs(OutputType.FILE);
             Files.copy(screenshot.toPath(), path.resolve(fileName));
+
+            logger.info("Screenshot saved: " + path.resolve(fileName));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe("Screenshot failed: " + e.getMessage());
         }
     }
 }

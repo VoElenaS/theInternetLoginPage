@@ -13,6 +13,12 @@ public class ElementalSeleniumPage extends BasePage {
         super(driver, wait);
     }
 
+    //TODO
+    public ElementalSeleniumPage open(WebDriver driver) {
+        driver.get("https://elementalselenium.com/");
+        return this;
+    }
+
     public boolean isElementalSeleniumPageHeaderVisible() {
         return ElementActions.isVisible(wait, elementalSeleniumPageHeader);
     }

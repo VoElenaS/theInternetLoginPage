@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 public class ElementActions {
@@ -132,9 +133,9 @@ public class ElementActions {
         return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    private static boolean safeWait(RunnableWait waitAction) {
+    private static boolean safeWait(Supplier<?> waitAction) {
         try {
-            waitAction.run();
+            waitAction.get();
             return true;
         } catch (Exception e) {
             logger.warning("safeWait caught exception: " + e.getMessage());
@@ -142,8 +143,4 @@ public class ElementActions {
         }
     }
 
-    @FunctionalInterface
-    private interface RunnableWait {
-        void run();
-    }
 }

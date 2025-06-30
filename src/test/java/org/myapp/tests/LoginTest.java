@@ -48,7 +48,7 @@ class LoginTest extends BaseTest {
     }
 
     @Test
-    public void seleniumLinkShouldBeActive() {
+    public void elementalSeleniumLinkShouldBeActive() {
         SecureAreaPage secureAreaPage = new LoginPage(driver, wait).open(driver).loginAs(validUser);
         secureAreaPage.isElementalSeleniumLinkVisible();
         ElementalSeleniumPage elementalSeleniumPage = secureAreaPage.elementalSeleniumLinkClick();

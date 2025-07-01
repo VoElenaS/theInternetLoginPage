@@ -1,19 +1,21 @@
 package org.myapp.pages;
 
+import org.myapp.utils.DateUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Logger;
 
 public abstract class BasePage {
-    private static final Logger logger = Logger.getLogger(BasePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     protected final WebDriver driver;
     protected final WebDriverWait wait;
 
@@ -48,7 +50,7 @@ public abstract class BasePage {
                 Files.createDirectories(path);
             }
 
-            String timestamp = org.myapp.utils.DateUtils.getCurrentTimestamp();
+            String timestamp = DateUtils.getCurrentTimestamp();
             String fileName = prefix + "_" + timestamp + ".png";
 
             TakesScreenshot ts = (TakesScreenshot) driver;
@@ -57,7 +59,7 @@ public abstract class BasePage {
 
             logger.info("Screenshot saved: " + path.resolve(fileName));
         } catch (IOException e) {
-            logger.severe("Screenshot failed: " + e.getMessage());
+            logger.error("Screenshot failed: " + e.getMessage());
         }
     }
 }

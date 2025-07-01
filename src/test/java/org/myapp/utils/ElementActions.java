@@ -6,13 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 import java.util.function.Supplier;
-import java.util.logging.Logger;
 
 public final class ElementActions {
-    private static final Logger logger = Logger.getLogger(ElementActions.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(ElementActions.class.getName());
 
     private ElementActions() {
     }
@@ -73,7 +74,7 @@ public final class ElementActions {
             wait.until(ExpectedConditions.alertIsPresent());
             return true;
         } catch (Exception e) {
-            logger.warning("Alert not present: " + e.getMessage());
+            logger.warn("Alert not present: " + e.getMessage());
             return false;
         }
     }
@@ -83,7 +84,7 @@ public final class ElementActions {
             Alert alert = wait.until(ExpectedConditions.alertIsPresent());
             alert.accept();
         } catch (Exception e) {
-            logger.warning("Alert not present: " + e.getMessage());
+            logger.warn("Alert not present: " + e.getMessage());
         }
     }
 
@@ -94,7 +95,7 @@ public final class ElementActions {
             alert.accept();
             return alertText;
         } catch (Exception e) {
-            logger.warning("Error handling alert: " + e.getMessage());
+            logger.warn("Error handling alert: " + e.getMessage());
             return null;
         }
     }
@@ -138,7 +139,7 @@ public final class ElementActions {
             waitAction.get();
             return true;
         } catch (Exception e) {
-            logger.warning("safeWait caught exception: " + e.getMessage());
+            logger.warn("safeWait caught exception: " + e.getMessage());
             return false;
         }
     }

@@ -6,11 +6,11 @@ import java.util.Random;
 
 public class DataGenerator {
 
-    public static String generateUserName() {
+    private static String generateUserName() {
         return randomString(8);
     }
 
-    public static String generatePassword() {
+    private static String generatePassword() {
         return randomString(12);
     }
 
@@ -30,4 +30,5 @@ public class DataGenerator {
         }
         return sb.toString();
     }
+
 }

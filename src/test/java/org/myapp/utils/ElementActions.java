@@ -11,9 +11,11 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
 
-public class ElementActions {
-
+public final class ElementActions {
     private static final Logger logger = Logger.getLogger(ElementActions.class.getName());
+
+    private ElementActions() {
+    }
 
     public static void typeText(WebDriverWait wait, By locator, String inputText) {
         WebElement webElement = waitForVisibility(wait, locator);
@@ -102,9 +104,7 @@ public class ElementActions {
             Set<String> handles = driverInstance.getWindowHandles();
             return handles.size() > 1;
         });
-
         Set<String> windowHandles = driver.getWindowHandles();
-
         for (String handle : windowHandles) {
             if (!currentWindowHandle.equals(handle)) {
                 driver.switchTo().window(handle);

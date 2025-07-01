@@ -13,7 +13,6 @@ import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 public abstract class BasePage {
-
     private static final Logger logger = Logger.getLogger(BasePage.class.getName());
     protected final WebDriver driver;
     protected final WebDriverWait wait;

@@ -2,7 +2,6 @@ package org.myapp.tests;
 
 import org.junit.jupiter.api.Test;
 import org.myapp.models.User;
-import org.myapp.pages.ElementalSeleniumPage;
 import org.myapp.pages.LoginPage;
 import org.myapp.pages.SecureAreaPage;
 import org.myapp.utils.DataGenerator;
@@ -49,12 +48,14 @@ class LoginTest extends BaseTest {
 
     @Test
     public void elementalSeleniumLinkShouldBeActive() {
-        SecureAreaPage secureAreaPage = new LoginPage(driver, wait).open(driver).loginAs(validUser);
-        secureAreaPage.isElementalSeleniumLinkVisible();
-        ElementalSeleniumPage elementalSeleniumPage = secureAreaPage.elementalSeleniumLinkClick();
-        boolean elementalSeleniumPageHeaderVisible = elementalSeleniumPage.isElementalSeleniumPageHeaderVisible();
+        SecureAreaPage secureAreaPage = new LoginPage(driver, wait)
+                .open(driver)
+                .loginAs(validUser);
+        boolean elementalSeleniumPageHeaderVisible = secureAreaPage
+                .elementalSeleniumLinkClick()
+                .isElementalSeleniumPageHeaderVisible();
 
-        assertTrue(elementalSeleniumPageHeaderVisible);
+        assertTrue(elementalSeleniumPageHeaderVisible, "The Elemental Selenium page fails to load.");
     }
 
 }

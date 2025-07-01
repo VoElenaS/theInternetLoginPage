@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.myapp.utils.ElementActions.*;
 
 public class LoginPage extends BasePage {
-
     private final By userNameInputLocator = By.id("username");
     private final By passwordInputLocator = By.id("password");
     private final By loginButton = By.className("radius");
@@ -37,6 +36,11 @@ public class LoginPage extends BasePage {
                 .submitForFailure();
     }
 
+    public SecureAreaPage submitSuccessfulLogin() {
+        click(wait, loginButton);
+        return new SecureAreaPage(driver, wait);
+    }
+
     private LoginPage submitForFailure() {
         click(wait, loginButton);
         return this;
@@ -52,11 +56,6 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public SecureAreaPage submitSuccessfulLogin() {
-        click(wait, loginButton);
-        return new SecureAreaPage(driver, wait);
-    }
-
     public String getMessageUserInvalid() {
         return getText(wait, flashMessageInvalid);
     }
@@ -64,4 +63,5 @@ public class LoginPage extends BasePage {
     public boolean isLoginPageHeaderVisible() {
         return isVisible(wait, loginPageHeader);
     }
+
 }

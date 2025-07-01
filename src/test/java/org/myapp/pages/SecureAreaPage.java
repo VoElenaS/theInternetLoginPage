@@ -41,4 +41,5 @@ public class SecureAreaPage extends BasePage {
     public String handleAndGetAlertMessage() {
         return getAlertTextAndAccept(wait);
     }
+
 }

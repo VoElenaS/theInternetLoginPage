@@ -18,7 +18,7 @@ class LoginTest extends BaseTest {
     @Test
     public void testSuccessfulLogin() {
         SecureAreaPage secureAreaPage = new LoginPage(driver, wait)
-                .open(driver)
+                .open()
                 .loginAs(validUser);
         secureAreaPage.takeScreenshot("successfulLogin");
         String expected = secureAreaPage
@@ -31,7 +31,7 @@ class LoginTest extends BaseTest {
     public void testFailLogin() {
         User user = DataGenerator.realUser();
         String expected = new LoginPage(driver, wait)
-                .open(driver)
+                .open()
                 .loginWithInvalidCredentials(user)
                 .getMessageUserInvalid();
 
@@ -40,7 +40,7 @@ class LoginTest extends BaseTest {
 
     @Test
     public void testLogout() {
-        SecureAreaPage secureAreaPage = new LoginPage(driver, wait).open(driver).loginAs(validUser);
+        SecureAreaPage secureAreaPage = new LoginPage(driver, wait).open().loginAs(validUser);
         LoginPage logout = secureAreaPage.logout();
 
         assertTrue(logout.isLoginPageHeaderVisible(), "Login page header should be visible after logout");
@@ -49,7 +49,7 @@ class LoginTest extends BaseTest {
     @Test
     public void elementalSeleniumLinkShouldBeActive() {
         SecureAreaPage secureAreaPage = new LoginPage(driver, wait)
-                .open(driver)
+                .open()
                 .loginAs(validUser);
         boolean elementalSeleniumPageHeaderVisible = secureAreaPage
                 .elementalSeleniumLinkClick()

@@ -19,7 +19,7 @@ public class LoginPage extends BasePage {
         super(driver, wait);
     }
 
-    public LoginPage open(WebDriver driver) {
+    public LoginPage open() {
         driver.get(Urls.LOGIN_URL);
         return this;
     }

@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CrossBrowserSuite" parallel="tests" thread-count="3">
+    <test name="ChromeTests">
+        <classes>
+            <class name="org.myapp.tests.LoginTest"></class>
+        </classes>
+    </test>
+</suite>

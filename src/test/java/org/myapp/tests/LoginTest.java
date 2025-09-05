@@ -1,14 +1,13 @@
 package org.myapp.tests;
 
-import org.junit.jupiter.api.Test;
 import org.myapp.models.User;
 import org.myapp.pages.LoginPage;
 import org.myapp.pages.SecureAreaPage;
 import org.myapp.utils.DataGenerator;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest {
 
     private final User validUser = User.builder()
             .name("tomsmith")
@@ -24,7 +23,7 @@ class LoginTest extends BaseTest {
         String expected = secureAreaPage
                 .getSuccessfulMessage();
 
-        assertTrue(expected.contains("You logged into a secure area!"));
+        Assert.assertTrue(expected.contains("You logged into a secure area!"));
     }
 
     @Test
@@ -35,7 +34,7 @@ class LoginTest extends BaseTest {
                 .loginWithInvalidCredentials(user)
                 .getMessageUserInvalid();
 
-        assertTrue(expected.contains("Your username is invalid!"));
+        Assert.assertTrue(expected.contains("Your username is invalid!"));
     }
 
     @Test
@@ -43,7 +42,7 @@ class LoginTest extends BaseTest {
         SecureAreaPage secureAreaPage = new LoginPage(driver, wait).open().loginAs(validUser);
         LoginPage logout = secureAreaPage.logout();
 
-        assertTrue(logout.isLoginPageHeaderVisible(), "Login page header should be visible after logout");
+        Assert.assertTrue(logout.isLoginPageHeaderVisible(), "Login page header should be visible after logout");
     }
 
     @Test
@@ -55,7 +54,7 @@ class LoginTest extends BaseTest {
                 .elementalSeleniumLinkClick()
                 .isElementalSeleniumPageHeaderVisible();
 
-        assertTrue(elementalSeleniumPageHeaderVisible, "The Elemental Selenium page fails to load.");
+        Assert.assertTrue(elementalSeleniumPageHeaderVisible, "The Elemental Selenium page fails to load.");
     }
 
 }

@@ -23,7 +23,9 @@ public class LoginTest extends BaseTest {
         String expected = secureAreaPage
                 .getSuccessfulMessage();
 
-        Assert.assertTrue(expected.contains("You logged into a secure area!"));
+        Assert.assertTrue(expected.contains("You logged into a secure area!"),
+                "Expected success message was not displayed. Actual message: " + expected
+        );
     }
 
     @Test

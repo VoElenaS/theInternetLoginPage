@@ -13,11 +13,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 
 public abstract class BasePage {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     protected final WebDriver driver;
     protected final WebDriverWait wait;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     public BasePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;

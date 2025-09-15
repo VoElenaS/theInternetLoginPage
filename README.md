@@ -1,8 +1,6 @@
 # 🧱 Page Object Model & DriverFactory — Building a Scalable Test Automation Framework
 
-A modern Java test automation template demonstrating a clean, maintainable Page Object Model (POM)   
-and a centralized WebDriver management approach (DriverFactory)   
-— built on top of [the-internet.herokuapp.com/login](https://the-internet.herokuapp.com/login).
+A modern Java test automation template with a clean Page Object Model (POM) and centralized WebDriver management (DriverFactory), demonstrated on  [the-internet.herokuapp.com/login](https://the-internet.herokuapp.com/login).
 
 ---
 
@@ -10,12 +8,12 @@ and a centralized WebDriver management approach (DriverFactory)
 
 A thoughtfully layered framework designed for clarity, reusability, and scalability:
 
-🔹 **BasePage** – abstract class with shared browser utilities (e.g., navigation, screenshots)  
-🔹 **Page Classes** – represent each UI screen with chainable, readable actions  
-🔹 **ElementActions** – centralized utility for robust interaction and explicit waits  
-🔹 **DriverFactory** – thread-safe WebDriver manager supporting multiple browsers and parallel execution  
-🔹 **BrowserConfig** – resolves browser type, headless/incognito flags from multiple sources (method args → system properties → config file → defaults)  
-🔹 **Sample Tests – showcase** login flows, cross-browser execution, and parallel testing  
+🔹 **BasePage** – abstract class providing shared browser utilities such as navigation and screenshots  
+🔹 **Page Classes** – represent individual UI screens with chainable, readable actions  
+🔹 **ElementActions** – centralized utility for robust element interactions and explicit waits  
+🔹 **DriverFactory** – thread-safe WebDriver manager that supports multiple browsers and parallel execution  
+🔹 **BrowserConfig** – resolves browser type and headless/incognito flags from multiple sources (method args → system properties → config file → defaults)  
+🔹 **Sample Tests** – demonstrate login flows, cross-browser execution, and parallel testing  
 
 ---
 
@@ -83,7 +81,7 @@ This project is a companion to the article:
 
 * **"Crafting the Perfect Page Object Model: An Expert Tester's Blueprint for Long-Lasting Automation Success**
 [Read the article →](https://medium.com/@VElanaS/b818c6ef6a90?source=friends_link&sk=32d065ebd7806736428197ac9d3fe4fe)
-* **"DriverFactory — The Backbone of Selenium Test Automation" [Read the article →](https://medium.com/@VElanaS/1a5c807a3c2f?source=friends_link&sk=d30f14fc0f0e4a85bcbbf2078d6fdd5b)**
+* **"DriverFactory - Central WebDriver Management in Selenium Automation" [Read the article →](https://medium.com/@VElanaS/1a5c807a3c2f?source=friends_link&sk=d30f14fc0f0e4a85bcbbf2078d6fdd5b)**
 
 🤝 **Contribute**  
 Ideas, improvements, and pull requests are welcome! Let’s refine the POM experience together.

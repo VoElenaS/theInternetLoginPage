@@ -63,7 +63,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng-browser.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng-crossbrowser.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

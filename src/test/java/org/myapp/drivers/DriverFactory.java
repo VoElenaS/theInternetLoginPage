@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 
 public class DriverFactory {
-    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    private final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
     private static final Logger logger = LoggerFactory.getLogger(DriverFactory.class);
-    private static DriverFactory instance;
+    private static volatile DriverFactory instance;
     private DriverFactory() {
     }
 
@@ -42,7 +42,7 @@ public class DriverFactory {
     }
 
     private static WebDriver createEdgeDriver(boolean headless, boolean incognito) {
-        WebDriverManager.edgedriver().setup();
+        System.setProperty("webdriver.edge.driver", "C:\\drivers\\msedgedriver.exe");
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         if (headless) edgeOptions.addArguments("--headless=new");

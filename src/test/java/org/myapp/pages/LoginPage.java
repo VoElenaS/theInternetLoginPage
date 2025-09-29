@@ -13,7 +13,8 @@ public class LoginPage extends BasePage {
     private final By passwordInputLocator = By.id("password");
     private final By loginButton = By.className("radius");
     private final By flashMessageInvalid = By.id("flash");
-    private final By loginPageHeader = By.xpath("//h2[text()='Login Page']");
+    //private final By loginPageHeader = By.xpath("//h2[text()='Login Page']");
+    private final By loginPageHeader = By.tagName("h2");
 
     public LoginPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);

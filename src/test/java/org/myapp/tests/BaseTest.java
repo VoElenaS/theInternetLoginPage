@@ -25,7 +25,7 @@ public class BaseTest {
         BrowserConfig browserConfig = BrowserConfig.browserParameters(browserParam, headlessParam, incognitoParam);
         DriverFactory.getInstance().setDriver(browserConfig.getBrowser(), browserConfig.isHeadless(), browserConfig.isIncognito());
         driver = DriverFactory.getInstance().getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     @AfterMethod

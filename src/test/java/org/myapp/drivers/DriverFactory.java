@@ -45,7 +45,7 @@ public class DriverFactory {
         System.setProperty("webdriver.edge.driver", "C:\\drivers\\msedgedriver.exe");
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        if (headless) edgeOptions.addArguments("--headless=new");
+        if (headless) edgeOptions.addArguments("--headless");
         if (incognito) edgeOptions.addArguments("--inprivate");
         return new EdgeDriver(edgeOptions);
     }

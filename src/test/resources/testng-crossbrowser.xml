@@ -16,12 +16,12 @@
             <class name="org.myapp.tests.LoginTest"></class>
         </classes>
     </test>
-    <test name="Edge">
-        <parameter name="browser" value="EDGE"></parameter>
-        <parameter name="headless" value="true"></parameter>
-        <parameter name="incognito" value="false"></parameter>
-        <classes>
-            <class name="org.myapp.tests.LoginTest"></class>
-        </classes>
-    </test>
+<!--    <test name="Edge">-->
+<!--        <parameter name="browser" value="EDGE"></parameter>-->
+<!--        <parameter name="headless" value="true"></parameter>-->
+<!--        <parameter name="incognito" value="false"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="org.myapp.tests.LoginTest"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

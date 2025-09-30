@@ -1,5 +1,6 @@
 package org.myapp.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +21,7 @@ public class SecureAreaPage extends BasePage {
         return new LoginPage(driver, wait);
     }
 
+    @Step("Get success message from secure area")
     public String getSuccessfulMessage() {
         return getText(wait, flashMessageSuccess);
     }

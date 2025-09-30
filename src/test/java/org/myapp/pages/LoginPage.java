@@ -1,5 +1,6 @@
 package org.myapp.pages;
 
+import io.qameta.allure.Step;
 import org.myapp.models.User;
 import org.myapp.utils.Urls;
 import org.openqa.selenium.By;
@@ -20,11 +21,13 @@ public class LoginPage extends BasePage {
         super(driver, wait);
     }
 
+    @Step("Open the login page")
     public LoginPage open() {
         driver.get(Urls.LOGIN_URL);
         return this;
     }
 
+    @Step("Login with username: {user.name}")
     public SecureAreaPage loginAs(User user) {
         return enterUserName(user.getName())
                 .enterPassword(user.getPassword())

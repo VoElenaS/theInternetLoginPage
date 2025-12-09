@@ -144,4 +144,50 @@ public final class ElementActions {
         }
     }
 
+    public static void diagnoseSelect(WebDriver driver, String xpath, String textToSelect) {
+    WebElement selectEl = driver.findElement(By.xpath(xpath));
+
+    System.out.println("====== SELECT DIAGNOSTICS START ======");
+
+    System.out.println("Displayed: " + selectEl.isDisplayed());
+    System.out.println("Enabled : " + selectEl.isEnabled());
+    System.out.println("Size : " + selectEl.getRect());
+    System.out.println("Z-index : " + selectEl.getCssValue("z-index"));
+
+    String html = selectEl.getAttribute("innerHTML");
+    System.out.println("\nINNER HTML BEFORE:");
+    System.out.println(html);
+
+    List<WebElement> options = selectEl.findElements(By.tagName("option"));
+    System.out.println("\nOPTIONS LIST:");
+    for (int i = 0; i < options.size(); i++) {
+        System.out.println(
+            " [" + i + "] value='" + options.get(i).getAttribute("value") + 
+            "', text='" + options.get(i).getText() + 
+            "', displayed=" + options.get(i).isDisplayed());
+    }
+
+    boolean exists = options.stream().anyMatch(o -> o.getText().trim().equals(textToSelect));
+    System.out.println("\nOption '" + textToSelect + "' exists? → " + exists);
+
+    options.stream()
+            .filter(o -> o.getAttribute("value").equals(textToSelect))
+            .forEach(o -> System.out.println(
+                "Found by value. Text NOW = '" + o.getText() + "' (may be late AJAX!)"));
+
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    Long overlays = (Long) js.executeScript(
+        "let el = arguments[0];" +
+        "let rect = el.getBoundingClientRect();" +
+        "let centerX = rect.left + rect.width/2;" +
+        "let centerY = rect.top + rect.height/2;" +
+        "let topEl = document.elementFromPoint(centerX, centerY);" +
+        "return (topEl === el) ? 0 : 1;", 
+        selectEl
+    );
+    System.out.println("\nOverlay on top? → " + (overlays == 1 ? "YES! (covered!)" : "No"));
+
+    System.out.println("====== SELECT DIAGNOSTICS END ======");
+}
+
 }
